@@ -1,15 +1,19 @@
 .navigation{
-    margin-right: 40px;
+    margin: 10px 20px;
 }
-ul{
+.navigation ul{
     display: flex;
     justify-content: space-between;
     direction: row;
     gap: 2rem;
 }
-ul li{
+.navigation ul li{
     list-style: none;
 }
-li a{
+
+.navigation ul li:hover{
+    background-color: gray;
+}
+.navigation li a{
     text-decoration: none;
 }
