@@ -12,11 +12,12 @@ function ProductCard({ producto }) {
                 <h5 className="card-title m-0 fw-bold"></h5>
                 <p className="card-text m-0">{producto.nombre}</p>
                 <p className="card-text m-0">S/ {producto.precio}</p>
-                <p className="card-text m-0">CodProducto {producto.id}</p>
+                <p className="card-text m-0">CodProductooo {producto.id}</p>
                 <div id="buttonsAddCar">
                     <Link to={"/item/" + producto.id}>
                         <button type="button" className="btn btn-primary" >Ver detalle</button></Link>
                 </div>
+
             </div>
         </div>
     )
