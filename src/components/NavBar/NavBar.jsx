@@ -1,13 +1,14 @@
 import CartWidget from "../CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 function NavBar() {
     return (
 
         <nav className="navbar navbar-expand-lg bg-light sticky-top p-0">
             <div className="container-fluid ">
-                <a className="navbar-brand" href="#" id="menuLogo"><img id="logo" src="https://previews.123rf.com/images/kannaa123rf/kannaa123rf1602/kannaa123rf160200100/51849875-cosm%C3%A9ticos-de-calidad-profesional-tienda-elegante-del-logotipo-accesorios-y-cosm%C3%A9ticos-s%C3%ADmbolo-de-co.jpg" alt=""
+                <Link className="navbar-brand" to="/" id="menuLogo"><img id="logo" src="https://previews.123rf.com/images/kannaa123rf/kannaa123rf1602/kannaa123rf160200100/51849875-cosm%C3%A9ticos-de-calidad-profesional-tienda-elegante-del-logotipo-accesorios-y-cosm%C3%A9ticos-s%C3%ADmbolo-de-co.jpg" alt=""
                     style={{ width: "80px" }} />
                     <p className="text-center fw-bold fs-6">Cosméticos Yesica</p>
-                </a>
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -15,16 +16,17 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#" id="menuInicio">Inicio</a>
+                            <Link className="nav-link active" aria-current="page" to="/" id="menuInicio">Inicio</Link>
                         </li>
                         <li className="nav-item dropdown" id="menuAdmin">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categorias
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#" id="menuMaquillaje" >Maquillaje</a></li>
-                                <li> <a className="dropdown-item" href="#" id="menuDermatologico" >Cuidado Dermatologico</a></li>
-                                <li> <a className="dropdown-item" href="#" id="menuCabello" >Cuidado Cabello</a></li>
+                                {/* <li><a className="dropdown-item" href="#" id="menuMaquillaje" >Maquillaje</a></li> */}
+                                <li><Link className="dropdown-item" to="/category/1">Maquillaje</Link></li>
+                                <li><Link className="dropdown-item" to="/category/2">Cuidado Dermatologico</Link></li>
+                                <li><Link className="dropdown-item" to="/category/3">Cuidado Cabello</Link></li>
                             </ul>
                         </li>
 

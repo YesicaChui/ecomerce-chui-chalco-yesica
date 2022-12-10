@@ -1,0 +1,54 @@
+[
+    {
+        id:1,
+        nombre:"rimel",
+        img:"http...",
+        precio:20,
+        categoria:1,
+    },
+    {
+        id:2,
+        nombre:"champu",
+        img:"htp...",
+        precio:30,
+        categoria:3
+    },
+    {
+        id:3,
+        nombre:"bloqueador",
+        img:"htp...",
+        precio:15,
+        categoria:2
+    },
+    {
+        id:4,
+        nombre:"pintalabio",
+        img:"htp...",
+        precio:5,
+        categoria:1
+    },
+    {
+        id:5,
+        nombre:"crema humectante",
+        img:"htp...",
+        precio:10,
+        categoria:2
+    },
+]
+
+[
+    {
+        id:1,
+        nombre:"rimel",
+        img:"http...",
+        precio:20,
+        categoria:1,
+    },
+    {
+        id:4,
+        nombre:"pintalabio",
+        img:"htp...",
+        precio:5,
+        categoria:1
+    }
+]
