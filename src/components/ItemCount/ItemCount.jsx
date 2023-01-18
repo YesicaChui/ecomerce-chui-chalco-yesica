@@ -1,6 +1,6 @@
-
+import { useState } from "react";
 function ItemCount({stock}) {
-    
+    const [cantidad, setCantidad] = useState(1); 
     function disminuirCantidad(){
         if(cantidad-1>0){
             setCantidad(cantidad-1)
@@ -24,4 +24,4 @@ function ItemCount({stock}) {
     )
 }
 
-export default ItemCount |
+export default ItemCount
