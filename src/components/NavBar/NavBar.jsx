@@ -1,6 +1,9 @@
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import Context from "../Context/Context";
 function NavBar() {
+    const { store } = useContext(Context);
     return (
 
         <nav className="navbar navbar-expand-lg bg-light sticky-top p-0">
@@ -54,7 +57,7 @@ function NavBar() {
                     <div className="d-flex">
                         <div className="align-self-center pt-2 ms-2">
                             <p className="m-0">Carrito</p>
-                            <p>S/ <span id="textoTotal">0.00</span> </p>
+                            <p>S/ <span id="textoTotal">{console.log(store.orders)} + 0.00</span> </p>
                         </div>
                     </div>
 

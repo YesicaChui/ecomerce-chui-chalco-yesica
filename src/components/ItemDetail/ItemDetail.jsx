@@ -1,9 +1,9 @@
 import React from 'react'
 import ItemCount from "../ItemCount/ItemCount";
+import { useState } from "react";
 
 
-
-export const ItemDetail = ({producto}) => {
+export const ItemDetail = ({producto,fdisminuir,faumentar,cantidad, faddToCar}) => {
 const miestilo = {
     width: "40rem",
 }
@@ -20,7 +20,7 @@ width: "17rem",
         <p className="card-text m-0">S/ {producto.precio}</p>
         <p className="card-text m-0">Stock {producto.stock}</p>
         <p className="card-text m-0">CodProducto {producto.id}</p>
-       <ItemCount stock={producto.stock}/>
+       <ItemCount fdisminuir={fdisminuir} faumentar={faumentar} cantidad={cantidad} faddToCar ={faddToCar}/>
     </div>
 </div>
   )
