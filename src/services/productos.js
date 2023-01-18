@@ -1,3 +1,6 @@
+import {db} from '../firebase/config'
+import { collection, doc, getDoc, getDocs,  query,
+  where } from 'firebase/firestore';
 const Productos =[
     {"id":2,"nombre": "Paleta de sombras","descripcion": "Milani Eyeshadow palette", "precio":99,"categoria":1,"stock":10,"imagen":"https://cdn.shopify.com/s/files/1/0903/0912/products/MILA-PALE-EYESHADOWPALETTE-MAEP01MOSTEYESHADOWPALETTE_500x.png?v=1606542835"},
     {"id":1,"nombre": "AVENE", "descripcion":"XERACALM A.D. CREMA RELIPIDIZANTE", "precio":164,"categoria":2,"stock":10,"imagen":"https://cdn.shopify.com/s/files/1/0903/0912/products/AVEN-PISE-XERACALMADCREMARELIPIDIZANTE-200ML_500x.png?v=1581208357"},
@@ -18,31 +21,109 @@ const Productos =[
 ]
 
 const SERVICE_TIMEOUT = 500;
+const productsColleccion = collection(db,'/productos')
 
 export function getProductos() {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+/*     setTimeout(() => {
       resolve(Productos);
-    }, SERVICE_TIMEOUT);
+    }, SERVICE_TIMEOUT); */
+    getDocs(productsColleccion)
+    .then((querySnapShot)=>{
+      const productList = []
+      querySnapShot.forEach((product)=>{
+        let miproduct={
+          "id":product.get('id'),
+          "nombre":product.get('nombre'),
+          "descripcion":product.get('descripcion'),
+          "precio":product.get('precio'),
+          "categoria":product.get('categoria'),
+          "stock":product.get('stock'),
+          "imagen":product.get('imagen'),
+          "idFirebase":product.id
+        }
+
+        productList.push(miproduct)
+      })
+      resolve(productList)   
+      //2da forma
+      //const clientsList = querySnapShot.docs().map((doc)=>doc.data())
+      //setClients(clientsList)
+    })
   });
 }
 
 export function getProductosCategoryId(id) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+/*     setTimeout(() => {
       let ProductosFiltrados = Productos.filter((producto)=>producto.categoria==id)
 
       resolve(ProductosFiltrados);
-    }, SERVICE_TIMEOUT);
+    }, SERVICE_TIMEOUT); */
+    const productsCollection = collection(db, '/productos');
+    const q = query(
+      productsCollection,
+      where('categoria', '==', Number(id))
+    );
+    getDocs(q)
+      .then((querySnapshot) => {
+        const productsList = [];
+
+        // OPCION 1: Iterar sobre una lista de documentos usando el método forEach de la API de QuerySnapshot
+        querySnapshot.forEach((product) => {
+          console.log(product.data())
+          console.log(product.id)
+          let miproduct={
+            "id":product.data().id,
+            "nombre":product.data().nombre,
+            "descripcion":product.data().descripcion,
+            "precio":product.data().precio,
+            "categoria":product.data().categoria,
+            "stock":product.data().stock,
+            "imagen":product.data().imagen,
+            "idFirebase":product.id
+          }
+  
+          productsList.push(miproduct)        
+        })
+
+        resolve(productsList)
+
+      })
+
+
   });
 }
 
 export function getProductoId(id) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+/*     setTimeout(() => {
       let ProductosFiltrados = Productos.find((producto)=>producto.id==id)
 
       resolve(ProductosFiltrados);
-    }, SERVICE_TIMEOUT);
+    }, SERVICE_TIMEOUT); */
+    const docRef = doc(db, '/productos', id); 
+    getDoc(docRef)
+    .then((docSnapshot) => {
+      if (docSnapshot.exists()) {
+        console.log('El producto buscado es: ', docSnapshot.data());
+       // setClient(docSnapshot.data());
+       let miproduct={
+        "id":docSnapshot.get('id'),
+        "nombre":docSnapshot.get('nombre'),
+        "descripcion":docSnapshot.get('descripcion'),
+        "precio":docSnapshot.get('precio'),
+        "categoria":docSnapshot.get('categoria'),
+        "stock":docSnapshot.get('stock'),
+        "imagen":docSnapshot.get('imagen'),
+        "idFirebase":docSnapshot.id
+      }
+      resolve(miproduct)   
+        // console.log(docSnapshot.get('name'));
+        // console.log(docSnapshot.get(address.number)); --> suponiendo que tengo un atributo de tipo objeto con atributos dentro
+        // console.log(docSnapshot.id);
+
+      }
+    })
   });
 }
